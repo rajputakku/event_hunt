@@ -1,0 +1,2 @@
+$('[event_id="<%= @event.id %>"]').attr('data-content',"<%= raw escape_javascript(render 'organizer_popup') %>");
+$('[event_id="<%= @event.id %>"]').popover('toggle');

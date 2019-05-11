@@ -1,0 +1,25 @@
+<h1>Listing event_upvotes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_upvotes.each do |event_upvote| %>
+      <tr>
+        <td><%= link_to 'Show', event_upvote %></td>
+        <td><%= link_to 'Edit', edit_event_upvote_path(event_upvote) %></td>
+        <td><%= link_to 'Destroy', event_upvote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event upvote', new_event_upvote_path %>

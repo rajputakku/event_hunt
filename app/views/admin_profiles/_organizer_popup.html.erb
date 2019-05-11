@@ -1,0 +1,16 @@
+<style>
+	.select2-container{width: 200px!important;}
+</style>
+
+<div class="organiser_div">
+	<%= form_for @event, url:event_link_organizer_path(id: @event.id),:remote=>true, method: :put do |f| %>
+  <p>
+    <%= f.collection_select :organizer, @twitter_handles, :id, :twitter_handle,{prompt: "Select a category"},{:class=>"myselectcontainer#{@event.id}"} %>
+  </p>
+  <%= f.submit "Link", :class=>"btn btn-block btn-primary" %>
+<% end %>
+</div>
+
+<script>
+	$(".myselectcontainer<%=@event.id%>").select2();
+</script>

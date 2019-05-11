@@ -1,0 +1,25 @@
+<h1>Listing event_related_links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_related_links.each do |event_related_link| %>
+      <tr>
+        <td><%= link_to 'Show', event_related_link %></td>
+        <td><%= link_to 'Edit', edit_event_related_link_path(event_related_link) %></td>
+        <td><%= link_to 'Destroy', event_related_link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event related link', new_event_related_link_path %>

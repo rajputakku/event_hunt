@@ -1,0 +1,53 @@
+<style>
+	.border_line{border-bottom: 1px solid rgb(187, 187, 187);margin-bottom: 10px;}
+	.comment_text{padding: 10px;}
+</style>
+<li class="media">
+<hr>
+<div class="pull-left">
+	<% if event_comment.user.master_user_status_id == MasterUserStatus.find_by(status: 'active').id %>
+		<%= link_to (image_tag event_comment.user.image(:medium), :class=>"img-circle"), user_profile_path(event_comment.user) %>
+	<% else %>
+		<%= image_tag "/assets/default_user_medium.png" , width: "64px", height: "64px", :class=>"img-circle" %>
+	<% end %>
+</div>
+
+<div class="media-body">
+	<span class="text-muted pull-right">
+		<small>
+			<em>
+				<%= distance_of_time_in_words(Time.current, event_comment.created_at) %> ago
+			</em>
+		</small>
+	</span>
+	<!-- <a href="javascript:void(0)"> -->
+		<strong>
+				<div class='timeline-icon'>
+					<% if event_comment.user.master_user_status_id == MasterUserStatus.find_by(status: 'active').id %>
+						<%= link_to event_comment.user.name, user_profile_path(event_comment.user) %>
+					<% else %>
+						Anonymous
+					<% end %>
+					<% if user_signed_in? %>
+						<% if current_user == event_comment.user %>
+							<%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_event_event_comment_path(event_comment.event, event_comment), remote: :true %> 
+						<% end %>
+						<% if current_user == event_comment.user || current_user.master_role_id != MasterRole.find_by_role('user').id %>
+							<%= link_to "<i class='fa fa-trash'></i>".html_safe, event_event_comment_path(event_comment.event, event_comment), method: :delete, remote: :true, confirm:"Are you sure you want to delete this comment?" %>
+						<% elsif event_comment.event.organizers.count==0 ? nil : current_user == event_comment.event.organizers.first %>
+							<%= link_to "<i class='fa fa-trash'></i>".html_safe, event_event_comment_path(event_comment.event, event_comment), method: :delete, remote: :true, confirm:"Are you sure you want to delete this comment?" %>
+						<% end %>
+					<% end %>
+				</div>
+		</strong>
+	<!-- </a> -->
+	<p class="comment_text" readonly="true" id="comment<%= event_comment.id %>">
+		<% @p = event_comment.comment_text.split("\n") %>
+		<% @w = @p.collect {|s| s.split(" ")} %>
+		<% @q = @w.each {|f| f.select{|e| e.chars.first=='@'}.each {|e| e.replace(link_to e, 'http://twitter.com/'+e.slice(1,e.length), target: "_blank")}} %>
+		<% @h = @q.collect {|i| i.join(" ").html_safe} %>
+		<%= @h.join("<br>").html_safe %>
+	</p>
+	<!-- <div class="border_line"></div> -->
+</div>
+</li>

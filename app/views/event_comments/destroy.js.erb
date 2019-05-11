@@ -1,0 +1,1 @@
+$(".show-comments<%= @event.id%>").html('<%= raw escape_javascript(render partial:"/event_comments/event_comment", collection:@event.event_comments.order(created_at: :desc)) %>');

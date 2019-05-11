@@ -1,0 +1,10 @@
+if ( $( '.user_notify_btn' ).hasClass( 'new_notify' ) ) {
+$('.user_notify_btn').removeClass("new_notify");
+}
+
+$('#mynotificationModal').html('<%= raw escape_javascript(render "user_notifications") %>');
+
+$(".ncount").empty();
+$(".ncount").removeClass('count_design');
+$("#mynotificationModal").modal("show");
+

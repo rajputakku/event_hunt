@@ -1,0 +1,359 @@
+<style>
+  .comment_text{width: 100%!important;}
+  .m-b-20{margin-bottom: 20px!important}
+  .widget-main{padding: 0px!important;}
+  /*.register_button{background-color: rgb(197, 191, 191);padding:3px;padding-left: 8px;padding-right: 8px;line-height: 27px;}
+  .registered_button .modal_btn{line-height: 27px!important;padding:3px;background-color: #1bbae1;padding-left: 12px!important;padding-right: 12px!important;color: white;}*/
+  .register_button
+  {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    display: block;
+    background-color: rgb(197, 191, 191);
+    padding: 3px;
+    margin-top: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: white;
+  }
+  .registered_button
+  {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    display: block;
+    background-color: #13A89E;
+    margin-top: 2px;
+    padding: 3px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: white;
+  }
+  /*.register_button:hover{background-color: #13A89E;}*/
+  .register_button a,.register_button a:hover{color: white;text-decoration: none;}
+  .event_ribbon
+  {
+    font-family: 'open sans';
+    color: white;
+    padding: 6px;
+    /* height: 40px; */
+    position: absolute;
+    width: 65px;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0px 0px 1px 1px #D3CDCD;
+  }
+  .event_paid{background-color: rgb(240, 97, 97);}
+  .event_free{background-color: rgb(105, 221, 105);}
+  span.widget-icon .fa-thumbs-up {margin-left: 0px !important;
+                                  float: none !important;}
+ /* .organizer_data
+  {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    margin: 0px;
+    color: white;
+  }*/
+  /*.comments_count{margin-right: 10px;}*/
+  .job-item-price{font-size: 12px; padding: 5px;}
+  .job-item-icon{padding: 0px;}
+  .creator_name{color: white;}
+  .job-item > a{margin-bottom: 0px;border:0px solid #eeeeee;}
+  .event_ribbon
+  {
+    color: white;
+    padding: 6px;
+    /* height: 40px; */
+    position: absolute;
+    width: 60px;
+    z-index: 1;
+    top: 0;
+    left: 0px;
+    font-size: 12px;
+    font-family: 'open sans';
+font-weight: 600;
+    text-align: center;
+  }
+  .job-item{padding-bottom: 20px;}
+  .event_paid{background-color: rgb(240, 97, 97);}
+  .event_free{background-color: rgb(105, 221, 105);}
+  /*.register_button{margin-top: 2px;background-color: rgb(197, 191, 191);padding-left: 8px;padding-right: 8px;}
+  .registered_button{line-height: 27px!important;
+                     margin-top: 2px;
+                     background-color: #1bbae1;
+                     padding: 3px;
+                     padding-left: 8px;
+                     padding-right: 8px;
+                     color: white;}*/
+  .event_page_register .registered_button
+  {
+    display:inline;padding: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .event_page_register .register_button
+  {
+    display:inline;padding: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  /*.register_button:hover{background-color: #13A89E;}*/
+  .register_button a,.register_button a:hover{color: white;text-decoration: none;}
+  .event_buttons{margin-top: 10px;}
+/*  .modal.fade:not(.in) .modal-dialog {-webkit-transform: translate3d(125%, 0, 0);
+                                      transform: translate3d(125%, 0, 0);}
+  .modal-dialog{float: right;margin:0px;}*/
+  /*.job-item-info {height: 140px;}*/
+  /* mixitup css */
+  #jobsdiv .mix{/*opacity: 0;*/
+                display: none;}
+  #filterbtn
+  {
+    margin-left: 40%;
+     margin-right: 40%;
+     width: 20%;
+   }
+  #searchbtn
+  {
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+  }
+  .index_likes .myhook img{height: 26px;}
+  .job-item-info {
+padding: 20px;
+background-color: rgba(128, 128, 128, 0.15);
+}
+  .upvoters_image{margin-bottom: 10px;}
+  a.social-share-button-facebook{width: 30px!important;height: 30px!important;}
+    a.social-share-button-twitter{width: 33px!important;height: 33px!important;}
+  .social-share-button-facebook {
+  display: inline-block;
+/*  width: 30px;*/
+  margin-right: 20px;
+ /* height: 30px;*/
+  background: url("/assets/facebook-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+ .button_report {
+  display: inline-block;
+  width: 31px;
+  /*margin-right: 20px;*/
+  height: 31px;
+  background: url("/assets/flag.png") no-repeat;
+  background-size: 100% 100%;
+}
+  .social-share-button-twitter {
+    margin-right: 20px;
+  display: inline-block;
+ /* width: 30px;
+  height: 30px;*/
+  background: url("/assets/twitter-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+  .social-share-button-email {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url("/assets/mail-icon(30x30).png") no-repeat;
+  background-size: 100% 100%;
+}
+.social-share-button-email_new {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url("/assets/mail-icon(30x30).png") no-repeat;
+  background-size: 100% 100%;
+}
+.social-share-button{display: inline-block;}
+.modal_btn{margin-right: 20px;}
+.email_div{position: absolute;
+background-color: rgb(236, 236, 236);
+padding: 15px;
+left: 125px;
+top: -66px;}
+#mynotice{position: absolute;
+left: 40%;
+top: 25%;}
+ /* .organizer_data{position: absolute;
+}
+}
+}
+top: 0px;
+right: 0;
+margin: 0px;}*/
+/*.report-popup-link{vertical-align: super;}*/
+.email_event{padding: 30px;}
+.report_event{padding: 30px;}
+.popover-title{text-align: center;}
+#report_text{width: 200px!important;height: 100px!important;}
+/*.popover{padding: 25px;}*/
+.report_event .popover{max-width: 100%!important;}
+.modal_likes .myhook img{height: 56px;}
+h3{margin-bottom: 0px;}
+.widget-advanced .widget-header{height: 229px;}
+.event_bar_title{font-size: 14px!important;}
+.event_index_image{width: 100%;height: auto;}
+.profile_modal{cursor: pointer;}
+.event-time-text{display: inline-block;}
+</style>
+
+<div class="col-md-4 col-sm-6 col-xs-12 job-item eventthumb mix all <%= event.master_event_category.category %> <% if event.master_event_status_id==3 %>active<% end %><% if event.master_event_status_id==5 %>completed<% end %>" data-date="<%= event.event_start_time.strftime('%B %d, %Y %I:%M %p')  %>" data-up="<%= event.event_upvotes.count %>">
+          <a href="javascript:void(0)">
+            <a class="change_url<%=event.id%> event_modal_open profile_modal" event_id="<%= event.id %>" slug="<%=event.slug %>">
+              <div class="job-item-rating themed-color">
+                <div class="creator_name">
+                  <% if !event.event_creator.nil? && event.event_creator.master_user_status_id == MasterUserStatus.find_by(status: 'active').id %>
+                    <%= event.event_creator.name %>
+                  <% else %>
+                    Anonymous
+                  <% end %>
+                </div>
+              </div>
+              <div class="job-item-icon">
+        <% if event.paid %>
+          <div class="pull-right event_ribbon event_paid">
+            Paid
+          </div>
+        <% else %>
+          <div class="pull-right event_ribbon event_free">
+            Free
+          </div>
+        <% end %>
+        <%= image_tag event.image(:small),:class=>"event_index_image" %>
+      </div>
+      <div class="job-item-info clearfix">
+      <div class="" style="min-height:3em;"> 
+        <strong class="event_title">
+          <% if event.event_name.length > 67 %>
+                  <%= link_to event.event_name[0..66]<< "..", event.event_url, target: "_blank" %>
+                <% else %>
+                  <%= link_to event.event_name, event.event_url, target: "_blank" %>
+                <% end %>
+        </strong> 
+        </div><br>
+        <div class="text-muted venue">
+          <% if event.event_venue.length > 20 %>
+                  <%= event.event_venue[0..19]<< ".." %> 
+                <% else %>
+                  <%= event.event_venue %>
+                <% end %> 
+        </div> 
+        <!-- <div>
+          <div class="text-muted event-time-text">
+            <strong>Start Time: </strong><br/>
+            <strong>End Time: </strong>
+          </div>
+          <div class="text-muted event-time-text">
+            <%#= event.event_start_time.strftime('%b %d, %Y | %I:%M %p')  %><br/>
+            <%#= event.event_end_time.strftime('%b %d, %Y | %I:%M %p')  %>
+          </div>
+        </div> -->
+        <div class="text-muted">
+          <strong><%= event.event_start_time.strftime('%b %d, %Y | %I:%M %p')  %></strong>
+        </div>
+        <div class="text-muted event_buttons pull-right">
+          <span class="job-item-price themed-color-dark pull-right upvotes-count<%=event.id%>">
+            <%= event.event_upvotes.count %>
+          </span>
+          <div class="like-unlike-link<%=event.id%> index_likes pull-right">
+            <% if user_signed_in? %>
+              <% if EventUpvote.find_by(event_id: event.id, user_id: current_user.id) %>
+                <%= link_to (image_tag 'hook-2.png'), event_unlike_path(id: event.id), remote: true,:class=>"myhook" %>
+              <% else %>
+                <%= link_to (image_tag 'hook-1.png'), event_like_path(id: event.id), remote: true ,:class=>"myhook"%>
+              <% end %>
+            <% else %>
+              <%= link_to (image_tag 'hook-1.png'), "", "data-toggle"=>"modal", "data-target"=>"#signInModal", class:"myhook" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="text-muted event_buttons">
+          <span class="job-item-price themed-color-dark pull-right event-attendees-count<%=event.id%>">
+            <%= event.event_attendees.count %>
+          </span>
+          <div class="link-to-register<%=event.id%> home_register pull-right">
+            <% if user_signed_in? %>
+              <% if EventAttendee.find_by(event_id: event.id, user_id: current_user.id) %>
+                <% if event.paid %>
+                  <strong class="img-circle registered_button "><a style="color:white;text-decoration:none;" data-toggle="tooltip" data-original-title="Linked to payment page">R</a></strong>
+                <% else %>
+                  <strong class="img-circle registered_button ">R</strong>
+                <% end %>
+              <% else %>
+                <% if event.master_event_status_id == MasterEventStatus.find_by_status('completed').id %>
+                  <% if event.paid %>
+                    <strong class="img-circle register_button "><a style="color:white;text-decoration:none;" data-toggle="tooltip" data-original-title="Linked to payment page">R</a></strong>
+                  <% else %>
+                    <strong class="img-circle register_button ">R</strong>
+                  <% end %>
+                <% else %>
+                  <% if event.paid %>
+                    <% if event.event_start_time < Time.current %>
+                      <strong class="img-circle register_button signed_register"><%= link_to 'R', event_register_path(id: event.id), "data-toggle"=>"tooltip", "data-placement"=>"top" ,"title"=>"" ,"data-original-title"=> "Linked to payment page" %>
+                      </strong>
+                    <% else %>
+                      <strong class="img-circle register_button signed_register"><%= link_to 'R', event_register_path(id: event.id), "data-toggle"=>"tooltip", "data-placement"=>"top" ,"title"=>"" ,"data-original-title"=> "Linked to payment page", target:"_blank" %>
+                      </strong>
+                    <% end %>
+
+                  <% else %>
+                    <strong class="img-circle register_button signed_register"><%= link_to 'R', event_register_path(id: event.id), remote: true %></strong>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <strong class="img-circle register_button ">
+                <%= link_to 'R',"","data-toggle"=>"modal","data-target"=>"#signInModal"%>
+              </strong> 
+            <% end %>
+          </div>
+        </div>
+        <div class="text-muted event_buttons">
+          <span class="job-item-price themed-color-dark pull-right comments_count">
+            <%= event.event_comments.count %>
+          </span>
+          <div>
+            <% if user_signed_in? %>
+              <a class="change_url<%=event.id%>" href="<%= event_path(:id=>event)%>"><i class='fa fa-comment-o fa-2x pull-right'></i></a>
+                <%#= link_to "<i class='fa fa-comments fa-2x pull-right'></i>".html_safe, event_modal_path(:id=>event.id),:class=> "change_url",:remote=> true%>
+            <% else %>
+              <%= link_to "<i class='fa fa-comment-o fa-2x pull-right'></i>".html_safe, "", "data-toggle"=>"modal", "data-target"=>"#signInModal" %> 
+            <% end %>
+          </div>
+        </div>
+        <div class="text-muted event_buttons">
+          <a href="javascript:void(0)"  data-toggle="tooltip" title="" data-original-title="Organiser of the Event">
+            <i class="fa fa-circle-o fa-2x"></i>
+          </a>
+          <% if !event.organizers.first.nil? && event.organizers.first.master_user_status_id == MasterUserStatus.find_by(status: 'active').id %>
+            <strong style="vertical-align:super;" class="org_name hidden-xs">
+                    <% if event.event_organizers.first.organizer_name.length > 12 %>
+                    <%= link_to event.event_organizers.first.organizer_name[0..11]<< "..", user_profile_path(event.organizers.first), "data-toggle" => "popover" ,"data-content"=>"", "data-placement"=>"top","uniqid"=>rand(1..100000),"data-html" => true,"user_id"=> event.organizers.first.id, :class=>"checkuser" %>
+                    <% else %>
+                    <%= link_to event.event_organizers.first.organizer_name, user_profile_path(event.organizers.first), "data-toggle" => "popover" ,"data-content"=>"", "data-placement"=>"top","uniqid"=>rand(1..100000),"data-html" => true,"user_id"=> event.organizers.first.id, :class=>"checkuser" %>
+                    <% end %>
+                    </strong>
+                  <% else %>
+                  <% if event.event_organizers.first.organizer_name.length > 12 %>
+                    <strong class="org_name hidden-xs" style="vertical-align:super;"><%= event.event_organizers.first.organizer_name[0..11]<< ".." %></strong>
+                    <% else %>
+                    <strong class="org_name hidden-xs" style="vertical-align:super;"><%= event.event_organizers.first.organizer_name %></strong>
+                    <% end %>
+                  <% end %>
+        </div>
+
+  </div>
+    </a>
+  </a>
+</div>
+       
+         
+    
+
+
+       

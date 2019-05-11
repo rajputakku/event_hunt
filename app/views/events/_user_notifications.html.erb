@@ -1,0 +1,71 @@
+<style>
+.event_notify_image{border-radius: 50%;width:100%;}
+.notification_div{min-height: 100vh;}
+.widget-simple {
+padding: 5px;
+}
+.widget .widget-icon{line-height: 59px;}
+.notification_link{cursor: pointer;}
+</style>
+
+<div class="modal-dialog modal-lg notification_dialog">
+  <div class="modal-content">
+  <div class="modal-header visible-xs" style="border-bottom:none;">
+  <button  type="button" class="close visible-xs" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  
+  </div>
+
+    <div class="modal-body notification_div">
+    <a href="<%=clear_notifications_path(:id=>current_user.id)%>" data-remote= true class="btn btn-primary pull-right">Clear All</a>
+      <h4 class=="text-center" align="center" style="color:gray;">
+        <strong>NOTIFICATIONS</strong>
+      </h4>
+    
+      <% if @user_notifications.blank? %>
+        <div class="widget-simple" style="">
+          <div class="widget-icon pull-left  animation-fadeIn"> </div>
+          <h4 class="text-center" style="margin-top:25px;color:gray;">No new notifications</h4>
+          <small class="pull-right"></small>
+        </div>
+      <% else %>
+        <% @user_notifications.each do |notification| %>
+          <a <% if notification.event_id.present? %> event_id="<%=notification.event_id %>" slug="<%= notification.event.slug %>" <% end %> class="widget widget-hover-effect1 notification_link"  data-remote=true>
+            <div class="widget-simple" style="border: 2px solid;">
+              <div class="widget-icon pull-left  animation-fadeIn">
+              <% if notification.event_id.present? %>
+                <%= image_tag Event.find(notification.event_id).image(:thumb),:class=>"event_notify_image" %>
+                <% else %>
+                <%= image_tag User.find(notification.user_id).image(:small),:class=>"event_notify_image" %>
+                <% end %>
+              </div>
+              <h5 style="margin-top:25px;"><%= notification.notification_text %></h5>
+              <small class="pull-right"><%= notification.created_at.strftime('%B %d | %I:%M %p') %></small>
+            </div>
+          </a>
+        <% end %>
+      <% end %>
+      <script>
+        $('.notification_link').click(function(e) {
+          if ($(this).attr("slug")){
+            if (e.button != 1) {
+            var id= $(this).attr("event_id")
+            var event_render= "notify_modal"
+            $.ajax({
+      type: "get",
+      url: 'event_modal',
+      data: {id: id, event_render: event_render}
+    });
+            
+              
+          window.history.pushState('obj', 'newtitle', '/events/'+$(this).attr("slug"));
+        }
+        }
+        });
+      </script>
+      
+
+    </div>
+  </div>
+</div>
+
+

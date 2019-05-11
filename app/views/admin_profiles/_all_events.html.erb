@@ -1,0 +1,42 @@
+<tr>   
+  <!-- <td class="text-center"><img src="img/placeholders/avatars/avatar14.jpg" alt="avatar" class="img-circle"></td> -->
+  <td class="text-center"><%=link_to all_events.event_name,all_events %></td>
+  <td class="text-center"><%= all_events.event_creator.name %></td>
+  <td class="text-center">
+    <% if all_events.organizers.count == 0 %>
+      <%= all_events.event_organizers.first.organizer_name %>
+    <% else %>
+      <%= link_to all_events.event_organizers.first.organizer_name, user_profile_path(all_events.organizers.first) %>
+    <% end %>
+  </td>
+  <td class="text-center"><%= all_events.master_event_category.category %></td>
+  <td class="text-center"><%if all_events.paid %>Paid<% else %>Free<% end %></td>
+  <td class="text-center"><%= all_events.event_venue %></td>
+  <td class="text-center"><%= all_events.master_event_status.status %></td>
+
+  <!-- <td><span class="label label-success">VIP</span></td> -->
+                                
+
+  <td class="text-center ">
+    <div class="btn-group">             
+      <% if MasterEventStatus.find(all_events.master_event_status_id).status == "pending" %>
+        <%= link_to 'Approve', event_approve_path(id: all_events.id),:remote =>true,:class=>"btn btn-warning btn-sm" %>
+        <%= link_to 'Decline', event_dismiss_path(id: all_events.id),:remote =>true, data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger btn-sm" %>
+        <% if all_events.organizers.count == 0 %>
+          <%= link_to "Link Organiser",event_organizer_popup_path(id: all_events.id), "data-content"=>"Hello","data-html"=> "true","title"=>"Choose Organiser" ,"event_id"=> all_events.id,"data-placement"=>"top" ,"class"=>"btn btn-primary btn-sm link_organizer"%>
+        <% end %>
+      <% elsif MasterEventStatus.find(all_events.master_event_status_id).status == "active" %>
+        <% if all_events.organizers.count == 0 %>
+          <%= link_to "Link Organiser",event_organizer_popup_path(id: all_events.id), "data-content"=>"Hello","data-html"=> "true","title"=>"Choose Organiser" ,"event_id"=> all_events.id,"data-placement"=>"top" ,"class"=>"btn btn-primary btn-sm link_organizer"%>
+        <% end %>
+        <%= link_to 'Delete', event_delete_path(id: all_events.id),:remote=>true, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger btn-sm" %>
+      <% else %>
+        No Action Required
+      <% end %>
+      <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+      <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a> -->
+    </div>
+  </td>
+</tr>
+<script>
+</script>

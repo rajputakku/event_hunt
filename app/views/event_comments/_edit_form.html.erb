@@ -1,0 +1,16 @@
+
+<style type="text/css">
+  .please_login{margin-bottom: 20px;}
+  .edit_comment{height: 70px!important;width: 90%!important;display: inline-block;}
+  .submit_button{vertical-align: top;}
+</style>
+                                  
+<%= form_for [@event, @event_comment], remote: :true do |f| %>
+  <span>
+    <%= f.text_area :comment_text,:class=>"form-control edit_comment" %>
+    <%= f.button :submit, :class=>"btn btn-primary submit_button" do %>
+      <i class='fa fa-pencil'></i>
+      Post
+    <% end %>
+  </span>
+<% end %>

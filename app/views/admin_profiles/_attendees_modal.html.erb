@@ -1,0 +1,51 @@
+<style>
+
+</style>
+
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4 class="modal-title" id="myModalLabel">Attendees (<%= @event.event_name %>)</h4>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+          <thead>
+            <tr>
+              <!-- <th class="text-center"><i class="gi gi-user"></i></th> -->
+              <th class="text-center">NAME</th>
+              <th class="text-center">EMAIL</th>
+              <th class="text-center">TWITTER HANDLE</th>
+              <!-- <th class="text-center">STATUS</th> -->
+              <!-- <th>Subscription</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <% @attendees.each do |attendee| %>
+              <tr>   
+                <!-- <td class="text-center"><img src="img/placeholders/avatars/avatar14.jpg" alt="avatar" class="img-circle"></td> -->
+                <td class="text-center">
+                  <%= link_to attendee.name, user_profile_path(attendee) %>
+                </td>
+                <td class="text-center">
+                  <%= attendee.email %>
+                </td>
+                <td class="text-center">
+                  @<%= attendee.twitter_handle %>
+                </td>
+              </tr>
+            <% end %>                            
+          </tbody>
+        </table>                 
+      </div>
+    </div>
+    <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      <% if @event.organizers.count !=0 %>
+        <%= link_to 'Send List of Attendees to Organiser', send_attendees_list_path(id: @event.id) , :class=>"btn btn-primary btn-sm" %>
+      <% end %>
+      <br/><br/><br/>
+    </div>
+  </div>
+</div>

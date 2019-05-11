@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>Untitled document</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">@import url('https://themes.googleusercontent.com/fonts/css?kit=RyNFTbWUngUcK6zU_0Ek3A');ol{margin:0;padding:0}.c5{color:#13a89e;font-family:"Satisfy";text-decoration:underline;font-weight:bold}.c6{color:#13a89e;font-size:30pt;text-decoration:underline}.c0{widows:2;orphans:2;direction:ltr}.c10{color:#13a89e;font-family:"Satisfy";text-decoration:underline}.c11{max-width:468pt;background-color:#ffffff;padding:72pt 72pt 72pt 72pt}.c7{font-style:italic;text-decoration:underline}.c9{color:#ff6132;text-decoration:underline}.c1{color:inherit;text-decoration:inherit}.c2{font-family:"Georgia"}.c16{text-align:center}.c12{font-size:30pt}.c3{font-size:12pt}.c15{color:#13a89e}.c8{font-size:10pt}.c14{font-style:italic}.c13{font-size:14pt}.c4{height:11pt}.title{widows:2;padding-top:0pt;line-height:1.15;orphans:2;text-align:left;color:#000000;font-size:21pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}.subtitle{widows:2;padding-top:0pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-style:italic;font-size:13pt;font-family:"Trebuchet MS";padding-bottom:10pt;page-break-after:avoid}li{color:#000000;font-size:11pt;font-family:"Arial"}p{color:#000000;font-size:11pt;margin:0;font-family:"Arial"}h1{widows:2;padding-top:10pt;line-height:1.15;orphans:2;text-align:left;color:#000000;font-size:16pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}h2{widows:2;padding-top:10pt;line-height:1.15;orphans:2;text-align:left;color:#000000;font-size:13pt;font-family:"Trebuchet MS";font-weight:bold;padding-bottom:0pt;page-break-after:avoid}h3{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-size:12pt;font-family:"Trebuchet MS";font-weight:bold;padding-bottom:0pt;page-break-after:avoid}h4{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-size:11pt;text-decoration:underline;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}h5{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-size:11pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}h6{widows:2;padding-top:8pt;line-height:1.15;orphans:2;text-align:left;color:#666666;font-style:italic;font-size:11pt;font-family:"Trebuchet MS";padding-bottom:0pt;page-break-after:avoid}
+    </style>
+  </head>
+  <body style="max-width: 468pt; background-color: #ffffff; padding: 72pt;" bgcolor="#ffffff">
+    <p style="widows: 2; orphans: 2; direction: ltr; text-align: center; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;" align="center">
+    	<span style="overflow: hidden; display: inline-block; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 141.50px; height: 141.50px; margin: 0.00px; border: 0.00px solid #000000;">
+    		<img alt="HUK logo2.png" src="<%= root_url %>assets/email/logo.png" style="width: 141.50px; height: 141.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="" />
+    	</span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-family: 'Georgia'; font-size: 30pt;">Hi </span>
+    	<span style="color: #13a89e; font-size: 30pt; text-decoration: underline; font-family: 'Georgia';">
+    		<%= link_to "@#{@admin.twitter_handle}", user_profile_url(@admin), style:"color: inherit; text-decoration: inherit;", target:"_blank" %>
+    	</span>
+    	<span style="font-family: 'Georgia'; font-size: 30pt;">!</span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; height: 11pt; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-family: 'Georgia'; font-size: 14pt;"></span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-family: 'Georgia'; font-size: 12pt;">A new user </span>
+    	<span style="color: #13a89e; font-family: 'Satisfy'; text-decoration: underline; font-weight: bold; font-size: 12pt;">
+    		<%= link_to "@#{@user.twitter_handle}", user_profile_url(@user), style:"color: inherit; text-decoration: inherit;", target:"_blank" %>
+    	</span>
+    	<span style="font-family: 'Georgia'; font-size: 12pt;">&nbsp;has signed-up on </span>
+    	<span style="font-size: 12pt; font-family: 'Satisfy'; font-weight: bold; color: #13a89e; text-decoration: underline;">
+	  		<%= link_to "HUK", root_url, style:"color: inherit; text-decoration: inherit;", target:"_blank" %>
+	  	</span>
+	  	<span style="font-family: 'Georgia'; font-size: 12pt;">.</span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; height: 11pt; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-family: 'Georgia'; font-size: 12pt;"></span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-family: 'Georgia'; font-size: 12pt;">Cheers,</span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-family: 'Georgia'; font-size: 12pt;">Atin</span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+    	<span style="font-style: italic; text-decoration: underline; font-family: 'Georgia'; font-size: 12pt; color: #13a89e;">
+    		<a href="https://twitter.com/@batraatin" style="color: inherit; text-decoration: inherit;">
+	  			@batraatin
+	  		</a>
+    	</span>
+    </p>
+    <p style="widows: 2; orphans: 2; direction: ltr; height: 11pt; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;">
+	  	<span style="color: #13a89e; font-size: 14pt; font-family: 'Georgia';"></span>
+	  </p>
+
+	  <p style="widows: 2; orphans: 2; direction: ltr; text-align: center; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;" align="center">
+	  	<span style="overflow: hidden; display: inline-block; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 20.00px; height: 20.00px; margin: 0.00px; border: 0.00px solid #000000;">
+	  		<a href="http://www.twitter.com/hukapp" target="_blank">
+	  			<img alt="social-003_twitter.png" src="<%= root_url %>assets/email/twitter.png" style="width: 20.00px; height: 20.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="">
+	  		</a>
+	  	</span>
+	  	<span style="font-size: 10pt;"> </span>
+	  	<span style="font-size: 10pt; font-family: 'Satisfy'; font-weight: bold; color: #13a89e; text-decoration: underline;">
+	  		<%= link_to "HUK", root_url, style:"color: inherit; text-decoration: inherit;", target:"_blank" %>
+	  	</span>
+	  	<span style="font-size: 10pt; font-family: 'Georgia';">
+	  		<%= link_to "app", root_url, style:"color: inherit; text-decoration: inherit;", target:"_blank" %>
+	  	</span>
+	  	<span style="font-size: 10pt;"> </span>
+	  	<span style="overflow: hidden; display: inline-block; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 20.00px; height: 20.00px; margin: 0.00px; border: 0.00px solid #000000;">
+	  		<a href="http://www.instagram.com/hukapp" target="_blank" >
+	  			<img alt="social-038_instagram.png" src="<%= root_url %>assets/email/camera.png" style="width: 20.00px; height: 20.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="">
+	  		</a>
+	  	</span>
+	  </p>
+
+	  <p style="widows: 2; orphans: 2; direction: ltr; text-align: center; color: #000000; font-size: 11pt; font-family: 'Arial'; margin: 0;" align="center">
+	  	<span style="font-size: 10pt; font-family: 'Satisfy'; font-weight: bold; color: #13a89e; text-decoration: underline;">
+	  		<%= link_to "HUK", root_url, style:"color: inherit; text-decoration: inherit;", target:"_blank" %>
+	  	</span>
+	  	<span style="font-size: 10pt; font-family: 'Georgia';"> is a project by </span>
+	  	<span style="color: #ff6132; text-decoration: underline; font-size: 10pt; font-family: 'Georgia';">
+	  		<a href="http://abinitiohk.com/" style="color: inherit; text-decoration: inherit;">
+	  			ab.Initio..HK Ltd.
+	  		</a>
+	  	</span>
+	  </p>
+	</body>
+</html>

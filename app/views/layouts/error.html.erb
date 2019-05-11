@@ -1,0 +1,35 @@
+<html>
+<head>
+    <%= favicon_link_tag 'HUKLogo.png' %>
+    <title>
+      HUK
+    </title>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <meta name="description" content="Welcome to Hukapp">
+    <meta name="author" content="Hukapp">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    
+<%= display_meta_tags %>
+    
+    <script src="/assets/modernizr-2.7.1-respond-1.4.2.min.js"></script>
+    <%= csrf_meta_tags %>
+    <%#= javascript_include_tag "jquery_loader" %>
+     <script src="/assets/jquery.js"></script>
+      <script src="/assets/jquery_ujs.js"></script>
+      <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700,100italic,400italic' rel='stylesheet' type='text/css'>
+    <%#= javascript_include_tag 'jquery' %>  
+  </head>
+<body class="error-body no-top">
+	<%= yield %>
+	
+
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<!-- BEGIN CORE TEMPLATE JS -->
+<!-- END CORE TEMPLATE JS -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+       <%= javascript_include_tag "application", "rails.validations"=> true,"rails.validations.custom"=> true %>
+</body>
+</html>

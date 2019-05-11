@@ -1,0 +1,5 @@
+<% publish_to @channel4 do %>
+$(".ncount").html('<%= @unread_notifications.count %>')
+$(".ncount").addClass('count_design');
+<% end %>
+location.reload();

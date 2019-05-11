@@ -1,0 +1,2 @@
+$(".upvotes-count<%=@event.id%>").html('<%= raw escape_javascript(@event.event_upvotes.count.to_s) %>');
+$(".like-unlike-link<%=@event.id%>").html('<%= raw escape_javascript(link_to (image_tag "hook-1.png"), event_like_path(id: @event.id), remote: true,:class=>"myhook") %>');

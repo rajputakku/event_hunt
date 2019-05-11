@@ -1,0 +1,13 @@
+<script>
+  $('.link_organizer').on('click',function(){
+    $('.link_organizer').popover({trigger: 'manual'})
+    var id= $(this).attr("event_id");
+    $.ajax({
+      type: "get",
+      url: 'event/organizer_popup',
+      data: {id: id} 
+    });
+    //$(this).popover('show');
+    return false;
+  });
+</script>

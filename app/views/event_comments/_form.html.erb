@@ -1,0 +1,44 @@
+<style type="text/css">
+  .please_login{margin-bottom: 20px;}
+</style>                               
+<% if user_signed_in? %>
+  <div class="pull-left">
+    <%= link_to (image_tag current_user.image(:medium),:class=>"img-circle"), user_profile_path(current_user) %>
+  </div>
+  <div class="media-body">
+
+    <%= form_for [@event, @event_comment], remote: :true do |f| %>
+      <%= f.hidden_field :event_id, value: @event.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :comment_text,:rows=>"4", cols: "100",:class=>"form-control comment_text comment-create" ,:placeholder=>"Enter your comment.." %>
+      <%= f.button :submit, :class=>"btn btn-primary comment_submit" do %>
+        <i class='fa fa-pencil'></i>
+        Post
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="please_login">
+    Please <%= link_to "Login", user_omniauth_authorize_path(:twitter) %> to comment.
+  </div>
+<% end %>
+                                
+<script type="text/javascript"> 
+  $(function()
+  {
+    data = <%= @twitter_handles.to_json.html_safe %>;
+     $('.comment-create').atwho({at:"@", 'data':data});
+  });
+</script>
+<script>
+  $(".comment_submit").click(function(){
+    // alert("hey");
+    // $(".loading_div_msg").empty();
+    // alert(!$.trim($(".loading_div_msg").html()).length);
+    if(!$.trim($(".loading_div_msg").html())){
+    $(".loading_div_msg").html("<%= LoadingMessage.find(rand(1..16)).message %>");
+  }
+$("#cover").fadeIn("fast");
+
+  });
+</script>

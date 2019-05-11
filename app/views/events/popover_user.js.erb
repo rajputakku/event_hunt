@@ -1,0 +1,2 @@
+$('[user_id="<%= @user.id %>"]').attr('data-content',"<%= raw escape_javascript(render 'popover_profile') %>");
+$('[uniqid="<%= @uniqid %>"]').popover('toggle');

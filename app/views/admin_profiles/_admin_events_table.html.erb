@@ -1,0 +1,20 @@
+<table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+  <thead>
+    <tr>
+      <!-- <th class="text-center"><i class="gi gi-user"></i></th> -->
+      <th class="text-center">NAME</th>
+      <th class="text-center">CREATOR</th>
+      <th class="text-center">ORGANISER</th>
+      <th class="text-center">CATEGORY</th>
+      <th class="text-center">TYPE</th>
+      <th class="text-center">VENUE</th>
+      <!-- <th class="text-center">STATUS</th> -->
+      <!-- <th>Subscription</th> -->
+      <th class="text-center">STATUS</th>
+      <th class="text-center">ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody class="all_events_div">
+    <%= render partial:'all_events',collection:@events %>                      
+  </tbody>
+</table>      

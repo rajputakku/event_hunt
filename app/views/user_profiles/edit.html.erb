@@ -1,0 +1,92 @@
+<style>
+.site-content{height: 100vh;}
+</style>
+<!-- Intro -->
+<%= javascript_include_tag "application_user" %>
+<section class="site-section site-section-light site-section-top themed-background-dark">
+  <div class="container">
+    <% if @user.id.nil? %>
+      <h1 class="text-center animation-slideDown">
+        <strong>Welcome to HUK!</strong>
+        <!-- <i class="fa fa-check-square"></i> --> 
+        <p> 
+          Help us know you better by filling out the following details.<br/>
+          Soon we’ll be off - you and us, discovering startup events you can attend.
+        </p>
+      </h1>
+    <% else %>
+      <h1 class="text-center animation-slideDown">
+        <strong>Edit Profile</strong>
+      </h1>
+
+    <% end %>
+  </div>
+</section>
+
+
+<section class="site-content site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Basic Form Elements Block -->
+        <div class="block">
+          <!-- Basic Form Elements Title -->
+          <!-- <div class="block-title">
+            <h2><strong>Basic Form</strong> Elements</h2>
+          </div> -->
+          <!-- END Form Elements Title -->
+
+          <!-- Basic Form Elements Content -->
+          <%= form_for @user, url:user_profile_path, method: :put,html: {:class=>"form-horizontal form-bordered",:id=>"form-valid"} do |f| %>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="example-email-input">Email *</label>
+              <div class="col-md-9">
+                <%= f.text_field :email,:class=>"form-control"  %>
+              </div>
+            </div>
+              
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="example-email-input">Job title</label>
+              <div class="col-md-9">
+                <%= f.text_field :job_title,:class=>"form-control",:placeholder=>"Job Title" %>
+                <span class="help-block">Please enter your job title</span>
+              </div>
+            </div>
+              
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="example-email-input">Company</label>
+              <div class="col-md-9">
+                <%= f.text_field :company,:class=>"form-control",:placeholder=>"Company"  %>
+                <span class="help-block">Please enter your job company</span>
+              </div>
+            </div>
+              
+            <div class="form-group form-actions">
+              <div class="col-md-2 col-md-offset-5">
+                <%= f.submit "Save" ,:class=>"btn btn-md btn-block btn-primary edit_submit" %>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- END Basic Form Elements Content -->
+          <!-- <div class="form-group form-actions pull-right" style="margin-top: -30px;margin-right: -20px;">
+          <%# if user_signed_in? && current_user.id == @user.id %>
+          <%#= link_to "Delete My Account", user_profile_path(@user), method: :delete, confirm: "Are you sure?" ,:class=>"btn btn-primary btn-sm"%>
+          <%# end %>
+          </div> -->
+        </div>
+        <!-- END Basic Form Elements Block -->
+      </div>
+    </div>
+  </div>
+</section>
+<% if current_user.email.slice(0,9)=="change@me" %>
+<script>
+  $(function(){ FormsValidation.init(); });
+  $(".edit_submit").click(function(){
+    $(".loading_div_msg").html("<%= LoadingMessage.find(rand(1..16)).message %>");
+$("#cover").fadeIn("fast");
+
+  });
+</script>
+<% end %>

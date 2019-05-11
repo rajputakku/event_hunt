@@ -1,0 +1,527 @@
+<style type="text/css">
+  #page-container{background-color: white;}
+  .control-label{font-size: 20px;font-weight: 100;color: gray;}
+  .no-padding{padding:0px!important;}
+  /*.block{height: 400px!important;}*/
+  .form-horizontal .control-label{text-align: left;}
+  .social-share-button{display: inline-block;}
+  .email_div{position: absolute;
+             background-color: rgb(236, 236, 236);
+             padding: 15px;
+             left: 35%;}
+  #mynotice{position: absolute;
+            top: 9%;
+            left: 15%;}
+  .content-header-media{height: 125px;}
+  #example-datatable2{margin-top: 40px!important;}
+  .myhook{vertical-align: sub;}
+</style>
+
+<!-- Intro -->
+<section class="site-section site-section-light site-section-top themed-background-dark">
+  <div class="container">
+    <h1 class="text-center animation-slideDown">
+      <!-- <i class="fa fa-check-square"></i> --> 
+      <strong>Let's get HUKed</strong>
+    </h1>
+    <h2 class="h3 text-center animation-slideUp">
+      <!-- Welcome to <strong>HUK</strong> <strong></strong>! -->
+    </h2>
+  </div>
+</section>
+<!-- Page content -->
+
+<div id="page-content">                    
+  <div class="content-header content-header-media">
+    <div class="header-section">
+      <div class="row">
+        <!-- Main Title (hidden on small devices for the statistics to fit) -->
+        <div class="col-md-4 col-lg-6 col-sm-12 col-xs-12">
+          <h1>Welcome <strong><% if current_user.master_role_id == MasterRole.find_by_role('superadmin').id %>Super <% end %>Admin</strong><br><small><!-- You Look Awesome! --></small></h1>
+        </div>
+        <!-- END Main Title -->
+
+        <!-- Top Stats -->
+        <div class="col-md-8 col-lg-6">
+          <div class="row text-center">
+            <div class="col-xs-4 col-sm-3">
+              <h2 class="animation-hatch">
+                <strong><%=@upvotes.count%></strong><br>
+                <small><%= image_tag 'hook-new-5.png',:class=>"myhook", :width=>"8px;"%>  HUKs</small>
+              </h2>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+              <h2 class="animation-hatch">
+                <strong><%=@registered.count%></strong><br>
+                <small><i class="fa fa-user"></i> Registered</small>
+              </h2>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+              <h2 class="animation-hatch">
+                <strong><%=@events.count%></strong><br>
+                <small><i class="fa fa-calendar-o"></i> Events</small>
+              </h2>
+            </div>
+            <!-- We hide the last stat to fit the other 3 on small devices -->
+            <div class="col-sm-3 hidden-xs">
+              <h2 class="animation-hatch">
+                <strong><%=@comments.count%></strong><br>
+                <small><i class="fa fa-comments-o"></i> Comments</small>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <!-- END Top Stats -->
+      </div>
+    </div>
+    <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
+    <!-- <img src="img/placeholders/headers/dashboard_header.jpg" alt="header image" class="animation-pulseSlow"> -->
+  </div>
+  <div class="block full">
+              <!-- Block Tabs Title -->
+              <div class="block-title">
+                <!-- <div class="block-options pull-right">
+                  <div class="btn-group">
+                    <a class="btn btn-alt btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                      <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                      <li>
+                        <a href="javascript:void(0)">Action</a>
+                        <a href="javascript:void(0)">Action 2</a>
+                      </li>
+                      <li class="divider">
+                      </li>
+                      <li>
+                        <a href="javascript:void(0)">Another Action</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+                <ul class="nav nav-tabs user_tabs" data-toggle="tabs">
+                  <li class="active">
+                    <a align="center" href="#example-tabs2-pending_events">
+                      
+                      <h3 class="widget-content animation-pullDown ">
+                        Pending<strong> Events</strong><div class="circle_count"> <%= @pending_events.count%></div>
+                        <small></small>
+                      </h3>
+                    </a>
+                  </li>
+                  <li class="">
+                    <a align="center" href="#example-tabs2-all_events">
+                      
+                      <h3 class="widget-content animation-pullDown ">
+                        All<strong> Events</strong> <div class="circle_count"><%=@events.count%></div>
+                        <small></small>
+                      </h3>
+                    </a>
+                  </li>
+                  <% if current_user.master_role_id == MasterRole.find_by_role("superadmin").id %>
+                  <li class="">
+                    <a align="center" href="#example-tabs2-all_users">
+                      
+                      <h3 class="widget-content animation-pullDown">
+                        All<strong> Users</strong> <div class="circle_count"><%=@users.count%></div>
+                        <small></small>
+                      </h3>
+                    </a>
+                  </li>
+                  <li class="">
+                    <a align="center" href="#example-tabs2-all_reports">
+                      
+                      <h3 class="widget-content animation-pullDown">
+                        All<strong> Reports</strong> <div class="circle_count"><%=@reports.count%></div>
+                        <small></small>
+                      </h3>
+                    </a>
+                  </li>
+                  <% end%>
+                </ul>
+              </div>
+              <!-- END Block Tabs Title -->
+
+              <!-- Tabs Content -->
+              <div class="tab-content">
+                <div class="tab-pane active" id="example-tabs2-pending_events">
+                        <!-- Datatables Header -->
+  <div class="content-header">
+    <div class="header-section">
+      <h1>
+        <i class="fa fa-table"></i>PENDING EVENTS<br><small>All Pending Events are shown here..</small>
+      </h1>
+    </div>
+  </div>
+   <!-- Datatables Content -->
+  <div class="block full">
+    <!-- <div class="block-title">
+        <h2><strong>Datatables</strong> integration</h2>
+    </div>
+    <p><a href="https://datatables.net/" target="_blank">DataTables</a> is a plug-in for the Jquery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table. It is integrated with template's design and it offers many features such as on-the-fly filtering and variable length pagination.</p> -->
+
+    <div class="table-responsive">
+      <table id="example-datatable3" class="table table-vcenter table-condensed table-bordered">
+        <thead>
+          <tr>
+            <!-- <th class="text-center"><i class="gi gi-user"></i></th> -->
+            <th class="text-center">NAME</th>
+            <th class="text-center">CREATOR</th>
+            <th class="text-center">ORGANISER</th>
+            <th class="text-center">CATEGORY</th>
+            <th class="text-center">TYPE</th>
+            <th class="text-center">VENUE</th>
+            <!-- <th class="text-center">STATUS</th> -->
+            <!-- <th>Subscription</th> -->
+            <th class="text-center">STATUS</th>
+            <th class="text-center">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pending_events.each do |event| %>
+            <tr>   
+              <!-- <td class="text-center"><img src="img/placeholders/avatars/avatar14.jpg" alt="avatar" class="img-circle"></td> -->
+              <td class="text-center"><%=link_to event.event_name,event %></td>
+              <td class="text-center"><%= event.event_creator.name %></td>
+              <td class="text-center">
+                <% if event.organizers.count == 0 %>
+                  <%= event.event_organizers.first.organizer_name %>
+                <% else %>
+                  <%= link_to event.event_organizers.first.organizer_name, user_profile_path(event.organizers.first) %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= event.master_event_category.category %></td>
+              <td class="text-center"><%if event.paid %>Paid<% else %>Free<% end %></td>
+              <td class="text-center"><%= event.event_venue %></td>
+              <td class="text-center"><%= event.master_event_status.status %></td>
+
+              <!-- <td><span class="label label-success">VIP</span></td> -->
+                                            
+
+              <td class="text-center ">
+                <div class="btn-group">             
+                  <% if MasterEventStatus.find(event.master_event_status_id).status == "pending" %>
+                    <%= link_to 'Approve', event_approve_path(id: event.id),:class=>"btn btn-warning btn-sm", :remote=>true %>
+                    <%= link_to 'Decline', event_dismiss_path(id: event.id), data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger btn-sm", :remote=>true %>
+                    <% if event.organizers.count == 0 %>
+                      <%= link_to "Link Organiser",event_organizer_popup_path(id: event.id), "data-content"=>"Hello","data-html"=> "true","title"=>"Choose Organiser" ,"event_id"=> event.id,"data-placement"=>"top" ,"class"=>"btn btn-primary btn-sm link_organizer"%>
+                    <% end %>
+                  <% elsif MasterEventStatus.find(event.master_event_status_id).status == "active" %>
+                    <% if event.organizers.count == 0 %>
+                      <%= link_to "Link Organiser",event_organizer_popup_path(id: event.id), "data-content"=>"Hello","data-html"=> "true","title"=>"Choose Organiser" ,"event_id"=> event.id,"data-placement"=>"top" ,"class"=>"btn btn-primary btn-sm link_organizer"%>
+                    <% end %>
+                    <%= link_to 'Delete', event_delete_path(id: event.id), data: { confirm: 'Are you sure?' },:class=>"btn btn-danger btn-sm", :remote=>true %>
+                  <% else %>
+                    No Action Required
+                  <% end %>
+                  <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                  <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a> -->
+                </div>
+              </td>
+            </tr>
+          <% end %>                            
+        </tbody>
+      </table>                 
+    </div>
+  </div>
+  <!-- END Datatables Content -->
+                </div>
+                <div class="tab-pane " id="example-tabs2-all_events">
+                  <div class="content-header">
+    <div class="header-section">
+      <h1>
+        <i class="fa fa-table"></i>ALL EVENTS<br><small>All Events are shown here..</small>
+      </h1>
+    </div>
+  </div>
+  <div class="block full">
+    <!-- <div class="block-title">
+        <h2><strong>Datatables</strong> integration</h2>
+    </div>
+    <p><a href="https://datatables.net/" target="_blank">DataTables</a> is a plug-in for the Jquery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table. It is integrated with template's design and it offers many features such as on-the-fly filtering and variable length pagination.</p> -->
+
+    <div class="table-responsive">
+      <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+        <thead>
+          <tr>
+            <!-- <th class="text-center"><i class="gi gi-user"></i></th> -->
+            <th class="text-center">NAME</th>
+            <th class="text-center">CREATOR</th>
+            <th class="text-center">ORGANISER</th>
+            <th class="text-center">CATEGORY</th>
+            <th class="text-center">TYPE</th>
+            <th class="text-center">VENUE</th>
+            <!-- <th class="text-center">STATUS</th> -->
+            <!-- <th>Subscription</th> -->
+            <th class="text-center">STATUS</th>
+            <th class="text-center">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr>   
+              <!-- <td class="text-center"><img src="img/placeholders/avatars/avatar14.jpg" alt="avatar" class="img-circle"></td> -->
+              <td class="text-center"><%= link_to event.event_name,event %></td>
+              <td class="text-center">
+                <% if !event.event_creator.nil? %>
+                  <% if event.event_creator.master_user_status_id == MasterUserStatus.find_by(status: 'active').id %>
+                    <%= event.event_creator.name %>
+                  <% else %>
+                    (B) <%= event.event_creator.name %>
+                  <% end %>
+                <% else %>
+                  Anonymous
+                <% end %>
+              </td>
+              <td class="text-center">
+                <% if !event.organizers.first.nil? %>
+                  <% if event.organizers.first.master_user_status_id == MasterUserStatus.find_by(status: 'active').id %>
+                    <%= link_to event.event_organizers.first.organizer_name, user_profile_path(event.organizers.first) %>
+                  <% else %>
+                    (B) <%= link_to event.event_organizers.first.organizer_name, user_profile_path(event.organizers.first) %> 
+                  <% end %>
+                <% else %>
+                  <%= event.event_organizers.first.organizer_name %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= event.master_event_category.category %></td>
+              <td class="text-center"><%if event.paid %>Paid<% else %>Free<% end %></td>
+              <td class="text-center"><%= event.event_venue %></td>
+              <td class="text-center"><%= event.master_event_status.status %></td>
+
+              <!-- <td><span class="label label-success">VIP</span></td> -->
+                                            
+
+              <td class="text-center ">
+                <div class="btn-group">             
+                  <% if MasterEventStatus.find(event.master_event_status_id).status == "pending" %>
+                    <%= link_to 'Approve', event_approve_path(id: event.id),:class=>"btn btn-warning btn-sm approve_event", :remote=>true %>
+                    <%= link_to 'Decline', event_dismiss_path(id: event.id), data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger btn-sm", :remote=>true %>
+                    <% if event.organizers.count == 0 %>
+                      <%= link_to "Link Organiser",event_organizer_popup_path(id: event.id), "data-content"=>"Hello","data-html"=> "true","title"=>"Choose Organiser" ,"event_id"=> event.id,"data-placement"=>"top" ,"class"=>"btn btn-primary btn-sm link_organizer"%>
+                    <% end %>
+                  <% elsif MasterEventStatus.find(event.master_event_status_id).status == "active" %>
+                    <% if event.organizers.count == 0 %>
+                      <%= link_to "Link Organizer",event_organizer_popup_path(id: event.id), "data-content"=>"Hello","data-html"=> "true","title"=>"Choose Organiser" ,"event_id"=> event.id,"data-placement"=>"top" ,"class"=>"btn btn-primary btn-sm link_organizer"%>
+                    <% end %>
+                    <%= link_to 'Delete', event_delete_path(id: event.id), data: { confirm: 'Are you sure?' },:class=>"btn btn-danger btn-sm", :remote=>true %>
+                    <a class="change_url<%=event.id%> event_modal_open btn btn-warning btn-sm" href="<%= attendees_modal_path(:id=>event.id)%>" data-remote=true>
+                     Attendees
+                    </a>
+                  <% elsif MasterEventStatus.find(event.master_event_status_id).status == "dismissed" %>
+                    No action
+                  <% else %>
+                    <a class="change_url<%=event.id%> event_modal_open btn btn-warning btn-sm" href="<%= attendees_modal_path(:id=>event.id)%>", data-remote=true>
+                     Attendees
+                    </a>
+                  <% end %>
+                  <!-- <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>
+                  <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a> -->
+                </div>
+              </td>
+            </tr>
+          <% end %>                            
+        </tbody>
+      </table>                 
+    </div>
+  </div>
+  <!-- END Datatables Content -->
+</div>
+<% if current_user.master_role_id == MasterRole.find_by_role("superadmin").id %>
+  <div class="tab-pane" id="example-tabs2-all_users">
+    <div class="content-header">
+      <div class="header-section">
+        <h1>
+          <i class="fa fa-table"></i>ALL USERS<br><small>All Users are shown here..</small>
+        </h1>
+        <%= link_to "Download CSV", admin_profiles_path(format: "csv") %>
+      </div>
+    </div>
+  <!-- Datatables Content -->
+    <div class="block full">
+      <!-- <div class="block-title">
+          <h2><strong>Datatables</strong> integration</h2>
+      </div>
+      <p><a href="https://datatables.net/" target="_blank">DataTables</a> is a plug-in for the Jquery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table. It is integrated with template's design and it offers many features such as on-the-fly filtering and variable length pagination.</p> -->
+
+      <div class="table-responsive">
+        <table id="example-datatable2" class="table table-vcenter table-condensed table-bordered">
+          <thead>
+            <tr>    
+              <!-- <th class="text-center"><i class="gi gi-user"></i></th> -->
+              <th class="text-center">NAME</th>
+              <th class="text-center">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="text-center">
+                  <%=link_to user.name, user_profile_path(user) %>
+                </td>
+                <td class="text-center ">
+                  <div class="btn-group">
+                    <% if MasterUserStatus.find(user.master_user_status_id).status == 'active' %>
+                      <%= link_to 'Block', user_block_path(id: user.id), data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger btn-sm" %>
+                    <% elsif MasterUserStatus.find(user.master_user_status_id).status == 'blocked' %>
+                      <%= link_to 'Unblock', user_unblock_path(id: user.id), data: { confirm: 'Are you sure?' },:class=>"btn btn-primary btn-sm" %>
+                    <% end %>
+                    <% if MasterRole.find(user.master_role_id).role == 'user' %>
+                      <%= link_to 'Add admin', user_add_admin_path(id: user.id), data: { confirm: 'Are you sure?' } ,:class=>"btn btn-danger btn-sm" ,:remote=>true %>
+                    <% elsif MasterRole.find(user.master_role_id).role == 'admin' %>
+                      <%= link_to 'Remove admin', user_remove_admin_path(id: user.id), data: { confirm: 'Are you sure?' },:class=>"btn btn-primary btn-sm" ,:remote=>true %>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="tab-pane" id="example-tabs2-all_reports">
+    <div class="content-header">
+      <div class="header-section">
+        <h1>
+          <i class="fa fa-table"></i>ALL REPORTS<br><small>All Reports are shown here..</small>
+        </h1>
+        
+      </div>
+    </div>
+  <!-- Datatables Content -->
+    <div class="block full">
+      <!-- <div class="block-title">
+          <h2><strong>Datatables</strong> integration</h2>
+      </div>
+      <p><a href="https://datatables.net/" target="_blank">DataTables</a> is a plug-in for the Jquery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table. It is integrated with template's design and it offers many features such as on-the-fly filtering and variable length pagination.</p> -->
+
+      <div class="table-responsive">
+        <table id="example-datatable2" class="table table-vcenter table-condensed table-bordered">
+          <thead>
+            <tr>    
+              <!-- <th class="text-center"><i class="gi gi-user"></i></th> -->
+              <th class="text-center">User</th>
+              <th class="text-center">Event</th>
+              <th class="text-center">Report reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <tr>
+                <td class="text-center">
+                  <%=link_to report.user.name, user_profile_path(report.user) %>
+                </td>
+                <td class="text-center ">
+                  <%= link_to report.event.event_name,event_path(report.event) %>
+                </td>
+                <td class="text-center ">
+                  <%= report.report_reason %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<!-- <div class="tab-pane" id="example-tabs2-registered_events">
+</div> -->
+</div>
+<!-- END Tabs Content -->
+</div>
+<!-- END Block Tabs -->
+ 
+
+
+
+  
+  <!-- END Datatables Content -->
+  </div>
+  
+  
+
+ 
+  
+
+
+
+  <!-- <ul class="breadcrumb breadcrumb-top">
+      <li>Tables</li>
+      <li><a href="">Datatables</a></li>
+  </ul> -->
+  <!-- END Datatables Header -->
+
+  <!-- Datatables Content -->
+  
+  <!-- Datatables Header -->
+
+  <!-- <ul class="breadcrumb breadcrumb-top">
+      <li>Tables</li>
+      <li><a href="">Datatables</a></li>
+  </ul> -->
+  <!-- END Datatables Header -->
+  
+</div>
+<!-- END Page Content -->
+
+<div class="modal fade bs-example-modal-lg" id="attendees-modal" tabindex="-1" role="dialog" aria-labelledby="Attendees Modal" aria-hidden="true">
+</div>
+
+<%= javascript_include_tag "application_admin" %>
+<script>
+  var TablesDatatables = function() {
+    return {
+      init: function() {
+        /* Initialize Bootstrap Datatables Integration */
+        App.datatables();
+            
+        //  $.extend( $.fn.dataTable.defaults, {
+        //     "ordering": 6
+        // } );
+        /* Initialize Datatables */
+        $('#example-datatable').dataTable({
+          "aoColumnDefs": [ { "bSortable": false, "aTargets": [0,1,2,3,4,5,7] } ],
+          "iDisplayLength": 10,
+          "order":[[ 6, "asc" ]],
+          "aLengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+        });
+        $('#example-datatable2').dataTable({
+          "aoColumnDefs": [ { "bSortable": false, "aTargets": [1] } ],
+          "iDisplayLength": 10,
+          "order":[[ 0, "asc" ]],
+          "aLengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+        });
+$('#example-datatable3').dataTable({
+  "aoColumnDefs": [ { "bSortable": false, "aTargets": [1,2,3,4,5,6,7] } ],
+          "iDisplayLength": 10,
+          "order":[[ 0, "asc" ]],
+          "aLengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+        });
+        /* Add placeholder attribute to the search input */
+        $('.dataTables_filter input').attr('placeholder', 'Search');
+      }
+    };
+  }();
+  $(function(){ TablesDatatables.init(); });
+  $('.link_organizer').on('click',function(){
+    $('.link_organizer').popover({trigger: 'manual'})
+    var id= $(this).attr("event_id");
+    $.ajax({
+      type: "get",
+      url: 'event/organizer_popup',
+      data: {id: id} 
+    });
+    //$(this).popover('show');
+    return false;
+  });
+
+  // function attendeesModal(event){
+  //   alert(event);
+  // }
+  $(".approve_event").on('click',function(){
+$("#cover").fadeIn();
+
+  });
+
+</script>

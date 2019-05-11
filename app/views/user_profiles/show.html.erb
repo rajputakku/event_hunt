@@ -1,0 +1,311 @@
+<%= javascript_include_tag "application_user" %><!-- <h1>Listing user_notifications</h1>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @user_notifications.each do |user_notification| %>
+      <tr>
+        <td><%#= link_to 'Show', user_notification %></td>
+        <td><%#= link_to 'Edit', edit_user_notification_path(user_notification) %></td>
+        <td><%#= link_to 'Destroy', user_notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <%# end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New User notification', new_user_notification_path %> -->
+
+  
+<style>
+.green-background{background-color:#13A89E;}
+.hooked_image{background-image: url("/assets/hook-1.png");}
+	.user_image{border-radius: 50%!important;}
+	.user_profile_container {
+		position: absolute!important;
+		display: inline-block!important;
+		padding: 5px!important;
+		width: 160px!important;
+		height: 150px!important;
+		top: -75px!important;
+		left: 50%!important;
+		margin-left: -75px!important;
+		border-radius: 50%!important;
+		background-color: #ffffff!important;
+	}
+	.widget-content-light{margin: 0px!important;}
+	.profile_header{height:60px!important;}
+	.block.full{margin-top: 50px!important;border: none!important;}
+	/*.user_tabs li{padding-left: 110px;}*/
+  /*.user_tabs{margin-left: 20%;}*/
+	.nav > li i {font-size: 25px;}
+	.nav-tabs > li{width: 25%;}
+	.event_tab_margins{margin-right: -4px!important;}
+	.gray_out{position: absolute;
+width: 100%;
+height: 145px;
+background-color: #E2E4E7;
+left: 0;}
+  .notification_modal .modal.fade:not(.in) .modal-dialog {
+    -webkit-transform: translate3d(125%, 0, 0)!important;
+    transform: translate3d(125%, 0, 0)!important;
+}
+.notification_modal.modal-dialog{float: right!important;margin:0px!important;width: 650px!important;}
+.block-title .nav-tabs {
+padding: 0px;
+border-bottom: none;
+}
+.block-title .nav-tabs {
+margin-bottom: -6px;
+}
+.event_tab_margins{border:none;}
+.event_tab_margins:hover{border:none;}
+li.active{border:none;}
+.event_tab_margins{font-family: 'open sans';}
+</style>
+
+
+<!-- Intro -->
+<section class="site-section site-section-light site-section-top themed-background-dark">
+	<div class="container">
+		<%# if @user == current_user %>
+			<%#= link_to "Edit", edit_user_profile_path(@user) %>
+		<%# end %>
+		<h1 class="text-center animation-slideDown">
+			<!-- <i class="fa fa-check-square"></i> --> 
+			<strong><%= @user.name %></strong>
+		</h1>
+		<h2 class="h3 text-center animation-slideUp">
+			<%= @user.job_title %><% if !@user.company.blank? %>, <strong><%= @user.company %></strong><% end %> <strong></strong>
+		</h2>
+		<h2 class="h3 text-center animation-slideUp">
+			@<strong><%= @user.twitter_handle %></strong> <strong></strong>
+		</h2>
+	</div>
+</section>
+
+<div class="row">
+	<div class="col-md-12">
+		<!-- Course Widget -->
+		<div class="widget" style="margin-bottom:0px;">
+			<div class="widget-advanced">
+				<!-- Widget Header -->
+				<div class="widget-header text-center themed-background-dark profile_header">
+          <!-- <h3 class="widget-content-light">
+            <%= @user.name %><br>
+            <%= @user.job_title %>, <%= @user.company %>
+          </h3> -->
+        </div>
+        <!-- END Widget Header -->
+
+        <!-- Widget Main -->
+        <div class="widget-main">
+        	<a href="javascript:void(0)" class="widget-image-container animation-fadeIn user_profile_container">
+        		<span class="user_image">
+        			<%=image_tag @user.image(:large), :class=>"user_image" %>
+        		</span>
+        	</a>
+        	<!-- <a href="javascript:void(0)" class="btn btn-sm btn-default pull-right" data-toggle="tooltip" title="" data-original-title="New Elements in HTML5">
+        		Lesson 2.3 <i class="fa fa-chevron-right"></i>
+        	</a>
+        	<a href="javascript:void(0)" class="btn btn-sm btn-default" data-toggle="tooltip" title="" data-original-title="HTML Structure">
+        		<i class="fa fa-chevron-left"></i> Lesson 2.1
+        	</a> -->
+        </div>
+        
+        
+        <!-- END Widget Main -->
+ 			</div>
+      <section class="site-content site-section">
+				<div class="container">
+					<div class="row jobs">
+				    <!-- Block Tabs -->
+				    <div class="block full">
+				    	<!-- Block Tabs Title -->
+				    	<div class="block-title">
+				    	
+				        <!-- <div class="block-options pull-right">
+				          <div class="btn-group">
+				            <a class="btn btn-alt btn-sm btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+				              <i class="fa fa-angle-down"></i>
+				            </a>
+				            <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+				              <li>
+				                <a href="javascript:void(0)">Action</a>
+				                <a href="javascript:void(0)">Action 2</a>
+				              </li>
+				              <li class="divider">
+				              </li>
+				              <li>
+				                <a href="javascript:void(0)">Another Action</a>
+				              </li>
+				            </ul>
+				          </div>
+				        </div> -->
+				        <div class="gray_out"></div>
+				        <ul class="nav nav-tabs user_tabs" data-toggle="tabs">
+
+				        	<li class="active">
+				          	<a align="center" href="#example-tabs2-created_events" class="event_tab_margins" style="border:none;">
+											<div class="widget-icon  green-background animation-fadeIn">
+				          			<i class="fa fa-pencil fa-2x"></i>
+				          		</div>
+				          		<h3 class="widget-content animation-pullDown visible-lg visible-md">
+				          			Submitted<strong> Events</strong><div class="circle_count"> <%=@created_events.count%></div>
+				          			<small></small>
+				          		</h3>
+				          		<h6 style="padding:0px;" class="widget-content animation-pullDown visible-sm visible-xs">
+				          			Submitted<strong> Events</strong><div class="circle_count"> <%=@created_events.count%></div>
+				          			<small></small>
+				          		</h6>
+				          		
+				          	</a>
+				          </li>
+				        	<li class="">
+				          	<a align="center" href="#example-tabs2-liked_events" class="event_tab_margins" style="border:none;">
+											<div class="widget-icon green-background animation-fadeIn" style="background:#13A89E url('/assets/hook-new-5.png') no-repeat center;">
+
+				            				<!-- <i class="fa fa-aaa"><img src="/assets/hook-1.png"/></i> -->
+
+				          		</div>
+				          		<h3 class="widget-content animation-pullDown visible-lg visible-md">
+				          			HUKed<strong> Events</strong> <div class="circle_count"><%=@upvoted_events.count%></div>
+				          			<small></small>
+				          		</h3>
+				          		<h6 style="padding:0px;margin-top: -5px;" class="widget-content animation-pullDown visible-sm visible-xs">
+				          			HUKed<strong> Events</strong> <div class="circle_count"><%=@upvoted_events.count%></div>
+				          			<small></small>
+				          		</h6>
+				          		
+										</a>
+				          </li>
+				          <li class="">
+				            <a align="center" href="#example-tabs2-organized_events" class="event_tab_margins" style="border:none;">
+											<div class="widget-icon green-background animation-fadeIn">
+				            		O
+				            	</div>
+				            	<h3 class="widget-content animation-pullDown visible-lg visible-md">
+				            		Organised<strong> Events</strong> <div class="circle_count"><%=@organized_events.count%></div>
+				            		<small></small>
+				            	</h3>
+				            	<h6 style="padding:0px;" class="widget-content animation-pullDown visible-sm visible-xs">
+				            		Organised<strong> Events</strong> <div class="circle_count"><%=@organized_events.count%></div>
+				            		<small></small>
+				            	</h6>
+				            	
+										</a>
+				          </li>
+				          <li class="">
+				            <a align="center" href="#example-tabs2-registered_events" class="event_tab_margins" style="border:none;">
+											<div class="widget-icon green-background animation-fadeIn">
+				            		R
+				            	</div>
+				            	<h3 class="widget-content animation-pullDown visible-lg visible-md">
+				            		Registered<strong> Events</strong> <div class="circle_count"><%=@events_registered_for.count%></div>
+				            		<small></small>
+				            	</h3>
+				            	<h6 style="padding:0px;" class="widget-content animation-pullDown visible-sm visible-xs">
+				            		Registered<strong> Events</strong> <div class="circle_count"><%=@events_registered_for.count%></div>
+				            		<small></small>
+				            	</h6>
+				            	
+				            </a>
+				        	</li>
+								</ul>
+				      </div>
+				      <!-- END Block Tabs Title -->
+				      
+				      <!-- Tabs Content -->
+				      <div class="tab-content">
+				        <div class="tab-pane active" id="example-tabs2-created_events">
+					        <%= render partial: "event", collection:@created_events %>
+								</div>
+	              <div class="tab-pane " id="example-tabs2-liked_events">
+	                <%= render partial: "event", collection:@upvoted_events %>
+					      </div>
+	              <div class="tab-pane" id="example-tabs2-organized_events">
+	          			<%= render partial: "event", collection:@organized_events %>
+								</div>
+	        			<div class="tab-pane" id="example-tabs2-registered_events">
+	                <%= render partial: "event", collection:@events_registered_for %>
+								</div>
+				      </div>
+				      <!-- END Tabs Content -->
+				    </div>
+				    <!-- END Block Tabs -->
+      		</div>
+				</div>
+			</section>
+    </div>
+    <!-- END Course Widget -->
+  </div>
+</div>
+
+ <!--event modal -->
+<div class="event_modal modal fade right bs-example-modal-lg prof_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+</div>
+<!-- end event modal -->
+
+
+<script>
+$(".register_button a").on('mouseenter',function(){
+$(this).parent().css('background-color','#13A89E');
+
+	  });
+	  $(".register_button a").on('mouseleave',function(){
+	  	$(this).parent().css('background-color','rgb(197, 191, 191)');
+	  });
+    $(".profile_modal").click(function(e){
+    	if (e.button != 1) {
+      var id = $(this).attr("event_id")
+      // window.history.pushState('obj', 'newtitle', '/events/'+$(this).attr("slug"));
+        $.ajax({
+          type: "get",
+          url: '/event_modal',
+          data: {id: id}
+        })
+    }
+     
+    });
+
+    $('.prof_modal').on('hidden.bs.modal', function () {
+  // if(document.referrer.indexOf("events/new")<=-1)
+  var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+
+  if(iOS){
+    window.history.replaceState('object or string', 'Title', '/user_profiles/<%=@user.twitter_handle %>');
+  }else{
+
+     // window.history.back();
+     window.history.replaceState('object or string', 'Title', '/user_profiles/<%=@user.twitter_handle %>');
+
+     }  
+  });
+
+      
+  </script>
+
+ <script>    
+	$('.checkuser').on('mouseenter',function(){
+    $('.checkuser').popover({trigger: 'manual'});
+    var id= $(this).attr("user_id");
+    var uniqid = $(this).attr('uniqid');
+    $.ajax({
+      type: "get",
+      url: '/event/popover_user',
+      data: {userid: id, uniqid: uniqid}
+    });
+  });
+
+  $('.checkuser').on('mouseleave',function(){
+    $('.checkuser').popover('hide');
+  });
+</script>
+

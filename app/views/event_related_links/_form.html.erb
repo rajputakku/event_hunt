@@ -1,0 +1,17 @@
+<%= form_for(@event_related_link) do |f| %>
+  <% if @event_related_link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event_related_link.errors.count, "error") %> prohibited this event_related_link from being saved:</h2>
+
+      <ul>
+      <% @event_related_link.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+$(".event-attendees-count<%=@event.id%>").html('<%= raw escape_javascript(@event.event_attendees.count.to_s) %>');
+$(".link-to-register<%=@event.id%>").html('<strong class="img-circle registered_button  "><a style="color:white;text-decoration:none;" data-toggle="tooltip" data-original-title="Linked to payment page">R</a></strong>');
+
+<% if @event.user_id!=current_user.id %>
+	<% publish_to @channel1 do %>
+		$(".ncount").html('<%= @unread_notifications_creator.count %>')
+		$(".ncount").addClass('count_design');
+	<% end %>
+<% end %>
+
+<% if !@unread_notifications_organizer.blank? %>
+	<% if @event.organizers.first.id!=current_user.id %>
+		<% publish_to @channel2 do %>
+			$(".ncount").html('<%= @unread_notifications_organizer.count %>')
+			$(".ncount").addClass('count_design');
+		<% end %>
+	<% end %>
+<% end %>
+
+<% if @event.paid %>
+	$(".tooltip").hide();
+  //window.open('<%#= @event.payment_url %>', '_blank');
+  window.location.href="<%= @event.payment_url %>";
+<% end %>
+
+
+// $("#cover").fadeOut();

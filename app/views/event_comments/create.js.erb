@@ -1,0 +1,36 @@
+$(".show-comments<%=@event.id%>").html('<%= raw escape_javascript(render partial:"/event_comments/event_comment", collection:@event_comment.event.event_comments.order(created_at: :desc)) %>');
+$('.comment-create').val('');
+<% if !@unread_notifications_mention.blank? %>
+
+	<% publish_to @channel3 do %>
+	
+	$(".ncount").html('<%= @unread_notifications_mention.count %>')
+	$(".ncount").addClass('count_design');
+	<% end %>
+<% end %>
+<% if @event.user_id!=current_user.id %>
+<% if !@unread_notifications_creator.blank? %>
+<% publish_to @channel1 do %>
+$(".ncount").html('<%= @unread_notifications_creator.count %>')
+$(".ncount").addClass('count_design');
+<% end %>
+<% end %>
+<% end %>
+<% if !@unread_notifications_organizer.blank? %>
+<% if @event.organizers.first.id!=current_user.id %>
+
+	<% publish_to @channel2 do %>
+	$(".ncount").html('<%= @unread_notifications_organizer.count %>')
+$(".ncount").addClass('count_design');
+	<% end %>
+<% end %>
+<% end %>
+
+$("#cover").fadeOut("fast");
+setTimeout(function () {
+           // Load data
+           $(".loading_div_msg").html("<%= LoadingMessage.find(rand(1..16)).message %>");
+}, 3000);
+
+
+
